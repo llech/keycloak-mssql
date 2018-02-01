@@ -39,18 +39,20 @@ Then restarting the container:
 
 ## Database
 
-This image supports using H2, MySQL or PostgreSQL as the database. The image will automatically detect what DB to use based
+This image supports using H2, MySQL, PostgreSQL or SQL Server as the database. The image will automatically detect what DB to use based
 on the following rules:
 
 - Use PostgreSQL if `postgres` hostname resolves or `POSTGRES_ADDR` environment variable is set
 - Use MySQL if `mysql` hostname resolves or `MYSQL_ADDR` environment variable is set
+- Use SQL Server if `sqlserver` hostname resolves or `SQLSERVER_ADDR` environment variable is set
 - Use embedded H2 if none of above and `DB_VENDOR` environment variable not set 
 
 You can also use the `DB_VENDOR` environment variable to explicitly specify the database:
 
 - `h2` for the embedded H2 database,
 - `postgres` for the Postgres database,
-- `mysql` for the MySql database.
+- `mysql` for the MySql database,
+- `sqlserver` for the SQL Server database.
 
 
 
