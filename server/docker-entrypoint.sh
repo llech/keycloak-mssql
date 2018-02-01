@@ -24,6 +24,13 @@ if [ "$POSTGRES_PORT_5432_TCP_PORT" != "" ]; then
     POSTGRES_PORT="$POSTGRES_PORT_5432_TCP_PORT"
 fi
 
+if [ "$SQLSERVER_PORT_1433_TCP_ADDR" != "" ]; then
+    export SQLSERVER_ADDR="$SQLSERVER_PORT_1433_TCP_ADDR"
+fi
+
+if [ "$SQLSERVER_PORT_1433_TCP_PORT" != "" ]; then
+    SQLSERVER_PORT="$SQLSERVER_PORT_1433_TCP_PORT"
+fi
 
 # Detect DB vendor
 
@@ -33,6 +40,8 @@ elif [ "$DB_VENDOR" == "MYSQL" ]; then
       export DB_VENDOR="mysql"
 elif [ "$DB_VENDOR" == "H2" ]; then
       export DB_VENDOR="h2"
+elif [ "$DB_VENDOR" == "SQLSERVER" ]; then
+      export DB_VENDOR="sqlserver"
 else
     if (printenv | grep '^POSTGRES_ADDR=' &>/dev/null); then
         export DB_VENDOR="postgres"
@@ -42,6 +51,10 @@ else
         export DB_VENDOR="mysql"
     elif (getent hosts mysql &>/dev/null); then
         export DB_VENDOR="mysql"
+    elif (printenv | grep '^SQLSERVER_ADDR=' &>/dev/null); then
+        export DB_VENDOR="sqlserver"
+    elif (getent hosts sqlserver &>/dev/null); then
+        export DB_VENDOR="sqlserver"
     fi
 fi
 
@@ -53,6 +66,8 @@ if [ "$DB_VENDOR" == "postgres" ]; then
     DB_NAME="PostgreSQL"
 elif [ "$DB_VENDOR" == "mysql" ]; then
     DB_NAME="MySQL"
+elif [ "$DB_VENDOR" == "sqlserver" ]; then
+    DB_NAME="SQLServer"
 else
     DB_NAME="embedded H2"
 fi

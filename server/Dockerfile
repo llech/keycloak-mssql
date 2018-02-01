@@ -30,6 +30,9 @@ ADD databases/mysql/module.xml /opt/jboss/keycloak/modules/system/layers/base/co
 RUN mkdir -p /opt/jboss/keycloak/modules/system/layers/base/org/postgresql/jdbc/main; cd /opt/jboss/keycloak/modules/system/layers/base/org/postgresql/jdbc/main; curl -L http://central.maven.org/maven2/org/postgresql/postgresql/$JDBC_POSTGRES_VERSION/postgresql-$JDBC_POSTGRES_VERSION.jar > postgres-jdbc.jar
 ADD databases/postgres/module.xml /opt/jboss/keycloak/modules/system/layers/base/org/postgresql/jdbc/main
 
+RUN mkdir -p /opt/jboss/keycloak/modules/system/layers/base/net/sourceforge/jtds/main; cd /opt/jboss/keycloak/modules/system/layers/base/net/sourceforge/jtds/main; curl -O http://central.maven.org/maven2/net/sourceforge/jtds/jtds/1.3.1/jtds-1.3.1.jar
+ADD databases/sqlserver/module.xml /opt/jboss/keycloak/modules/system/layers/base/net/sourceforge/jtds/main
+
 ENV JBOSS_HOME /opt/jboss/keycloak
 ENV LANG en_US.UTF-8
 
