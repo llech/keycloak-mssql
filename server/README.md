@@ -142,6 +142,32 @@ Specify password for PostgreSQL database (optional, default is `password`).
 
 
 
+### SQL Server
+
+#### Environment variables
+
+##### SQLSERVER_ADDR
+
+Specify hostname of SQL Server database (optional, default is `sqlserver`).
+
+##### SQLSERVER_PORT
+
+Specify port of SQL Server database (optional, default is `1433`).
+
+##### SQLSERVER_DATABASE
+
+Specify name of SQL Server database (optional, default is `keycloak`).
+
+##### SQLSERVER_USER
+
+Specify user for SQL Server database (optional, default is `keycloak`).
+
+##### SQLSERVER_PASSWORD
+
+Specify password for SQL Server database (optional, default is `password`).
+
+
+
 ### Legacy container links
 
 Legacy container links (`--link`) are still supported, but these will be removed at some point in the future.
