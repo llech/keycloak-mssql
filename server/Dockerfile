@@ -22,8 +22,8 @@ ADD tools /opt/jboss/tools
 RUN /opt/jboss/tools/build-keycloak.sh
 
 USER 1000
-RUN mkdir -p /opt/jboss/keycloak/modules/system/layers/base/net/sourceforge/jtds/main; cd /opt/jboss/keycloak/modules/system/layers/base/net/sourceforge/jtds/main; curl -O http://central.maven.org/maven2/net/sourceforge/jtds/jtds/1.3.1/jtds-1.3.1.jar
-ADD databases/sqlserver/module.xml /opt/jboss/keycloak/modules/system/layers/base/net/sourceforge/jtds/main
+RUN mkdir -p /opt/jboss/keycloak/modules/system/layers/base/com/microsoft/sqlserver/main; cd /opt/jboss/keycloak/modules/system/layers/base/com/microsoft/sqlserver/main; curl -O http://central.maven.org/maven2/com/microsoft/sqlserver/mssql-jdbc/6.4.0.jre8/mssql-jdbc-6.4.0.jre8.jar
+ADD databases/sqlserver/module.xml /opt/jboss/keycloak/modules/system/layers/base/com/microsoft/sqlserver/main
 
 ENV JBOSS_HOME /opt/jboss/keycloak
 ENV LANG en_US.UTF-8
