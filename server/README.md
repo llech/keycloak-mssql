@@ -48,14 +48,20 @@ To create an admin account and import a previously exported realm run:
 
 ## Database
 
-This image supports using H2, MySQL, PostgreSQL or MariaDB as the database.
+This image supports using H2, MySQL, PostgreSQL or SQL Server as the database. The image will automatically detect what DB to use based
+on the following rules:
+
+- Use PostgreSQL if `postgres` hostname resolves or `POSTGRES_ADDR` environment variable is set
+- Use MySQL if `mysql` hostname resolves or `MYSQL_ADDR` environment variable is set
+- Use SQL Server if `sqlserver` hostname resolves or `SQLSERVER_ADDR` environment variable is set
+- Use embedded H2 if none of above and `DB_VENDOR` environment variable not set 
 
 You can specify the DB vendor directly with the `DB_VENDOR` environment variable. Supported values are:
 
 - `h2` for the embedded H2 database,
 - `postgres` for the Postgres database,
 - `mysql` for the MySql database.
-- `mariadb` for the MariaDB database.
+- `sqlserver` for the SQL Server database.
 
 If `DB_VENDOR` value is not specified the image will try to detect the DB vendor based on the following logic:
 
@@ -160,6 +166,33 @@ To set the welcome theme, use the following environment value :
 
 
 ## Adding a custom provider
+### SQL Server
+
+#### Environment variables
+
+##### SQLSERVER_ADDR
+
+Specify hostname of SQL Server database (optional, default is `sqlserver`).
+
+##### SQLSERVER_PORT
+
+Specify port of SQL Server database (optional, default is `1433`).
+
+##### SQLSERVER_DATABASE
+
+Specify name of SQL Server database (optional, default is `keycloak`).
+
+##### SQLSERVER_USER
+
+Specify user for SQL Server database (optional, default is `keycloak`).
+
+##### SQLSERVER_PASSWORD
+
+Specify password for SQL Server database (optional, default is `password`).
+
+
+
+### Legacy container links
 
 To add a custom provider extend the Keycloak image and add the provider to the `/opt/jboss/keycloak/standalone/deployments/`
 directory.

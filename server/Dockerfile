@@ -22,6 +22,11 @@ ADD tools /opt/jboss/tools
 RUN /opt/jboss/tools/build-keycloak.sh
 
 USER 1000
+RUN mkdir -p /opt/jboss/keycloak/modules/system/layers/base/net/sourceforge/jtds/main; cd /opt/jboss/keycloak/modules/system/layers/base/net/sourceforge/jtds/main; curl -O http://central.maven.org/maven2/net/sourceforge/jtds/jtds/1.3.1/jtds-1.3.1.jar
+ADD databases/sqlserver/module.xml /opt/jboss/keycloak/modules/system/layers/base/net/sourceforge/jtds/main
+
+ENV JBOSS_HOME /opt/jboss/keycloak
+ENV LANG en_US.UTF-8
 
 EXPOSE 8080
 
